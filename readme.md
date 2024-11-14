@@ -7,8 +7,8 @@ Este projeto implementa um servidor de autorização usando o framework Spring S
 
 ```mermaid
     flowchart LR
-    client-server["client-server"] -->|/authorize| auth-server["auth-server"] 
-    auth-server -->|/.well-known/openid-configuration| resource-server 
+    client-server["client-server"] -->  auth-server["auth-server"] 
+    auth-server -->  resource-server 
    
 ``` 
 - `client-server`: Requisições de autorização e acesso aos recursos são enviadas pelo cliente.
