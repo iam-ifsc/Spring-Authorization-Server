@@ -12,13 +12,29 @@ import org.springframework.security.oauth2.server.authorization.client.Registere
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
 
-
-// Oauth é sobre aturoizar um terceiro a acessar um recurso protegido
-// Limitar acesso apenas às aplicações confiáveis
-
+/**
+ * Configuração para o armazenamento de clientes OAuth2.
+ * <p>
+ * Esta classe define um cliente OAuth2 registrado, que será utilizado para gerenciar
+ * o acesso a recursos protegidos por meio de um servidor de autorização.
+ * Ela limita o acesso a aplicações confiáveis, configurando um cliente com 
+ * métodos de autenticação e escopos específicos.
+ * </p>
+ */
 @Configuration
 public class ClientStoreConfig {
-    
+
+    /**
+     * Configura e registra um cliente OAuth2 no repositório de clientes.
+     * <p>
+     * O cliente registrado possui um ID único, clientId, clientSecret e métodos
+     * de autenticação e autorização específicos. Ele também define o URI de redirecionamento,
+     * escopos de acesso e requer consentimento explícito do usuário para acessar dados
+     * protegidos.
+     * </p>
+     * 
+     * @return um repositório de clientes em memória contendo o cliente registrado
+     */
     @Bean
     RegisteredClientRepository registeredClientRepository() {
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString()) // registroq ue está salvo

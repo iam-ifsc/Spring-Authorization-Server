@@ -23,33 +23,30 @@ public class ClientController {
     }
 
     // Endpoint para obter as tarefas do usuário logado, acessando o resource server
-    @GetMapping("/tasks")
+    @GetMapping("tasks")
     public Mono<String> getTasks(
         @RegisteredOAuth2AuthorizedClient("client-server-oidc") OAuth2AuthorizedClient client) {
-        return webClient
-            .get()
-            .uri("/tasks")
-            .header("Authorization", "Bearer %s".formatted(client.getAccessToken().getTokenValue()))
-            .retrieve()
-            .bodyToMono(String.class);
+      return webClient
+          .get()
+          .uri("/tasks")
+          .header("Authorization", "Bearer %s".formatted(client.getAccessToken().getTokenValue()))
+          .retrieve()
+          .bodyToMono(String.class);
     }
 
     // Endpoint para retornar informações sobre o usuário autenticado após o login
     // O retorno é do tipo Mono, usado para representar uma operação assíncrona que retorna um único valor
     @GetMapping("/home")
-    public Mono<String> home(
-        @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient client,
-        @AuthenticationPrincipal OidcUser oidcUser) {
-        return Mono.just("""
-            <h2>Access Token: %s</h2>
-            <h2>Refresh Token: %s</h2>
-            <h2>ID Token: %s</h2>
-            <h2>Claims: %s</h2>
-        """.formatted(
-            client.getAccessToken().getTokenValue(),
-            client.getRefreshToken().getTokenValue(),
-            oidcUser.getIdToken().getTokenValue(),
-            oidcUser.getClaims()));
+    public Mono<String> home(@RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient client, @AuthenticationPrincipal OidcUser oidcUser) {
+    return Mono.just("""
+        <h2> Access Token: %s </h2>
+        <h2> Refresh Token: %s </h2>
+        <h2> Id Token: %s </h2>
+        <h2> Claims: %s </h2>
+            """.formatted(client.getAccessToken().getTokenValue(),
+        client.getRefreshToken().getTokenValue(),
+        oidcUser.getIdToken().getTokenValue(),
+        oidcUser.getClaims()));
     }
 }
 

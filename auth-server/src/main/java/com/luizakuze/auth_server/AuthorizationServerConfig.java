@@ -11,7 +11,7 @@ import org.springframework.security.oauth2.server.authorization.settings.Authori
  */
 @Configuration
 public class AuthorizationServerConfig {
-    
+    /* Apenas constroi o AS com as configurações desejadas. */
     @Bean
     AuthorizationServerSettings authorizationServerSettings() {
 
