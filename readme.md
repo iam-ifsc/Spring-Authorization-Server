@@ -15,6 +15,9 @@ Este projeto implementa um servidor de autorização usando o framework Spring S
 - `auth-server`: Responsável pela autenticação e autorização do cliente.
 - `resource-server`: Fornece acesso aos recursos protegidos após a validação dos tokens.
 
+## Execução 🖥️
+Nessa ordem: `auth-server` > `client-server` > `resource-server`.
+
 ## Manual 📖
 1. Acessar `127.0.0.1:8080/home`
 
